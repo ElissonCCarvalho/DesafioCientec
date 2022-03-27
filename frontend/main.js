@@ -7,7 +7,51 @@ const email = document.getElementById('Email')
 const phoneNumber = document.getElementById('PhoneNumber')
 const supportedInstitution = document.getElementById('SupportedInstitution')
 
+document.addEventListener('keypress', function (e) {
+    if (e.which == 13) {
+        if ($("#search-input").is(":focus")) {
+            const cnpj = document.getElementById('search-input').value
+
+            if (cnpj != "") {
+                $.ajax({
+                    url: baseURL + '/api/Foundation/search/' + cnpj,
+                    type: "get",
+                    contentType: "application/json",
+                    data: { cnpj },
+                    success: function (foundation) {
+                        var row = '<tr id="' + 0 + '">' +
+                            "<td>" + foundation.id + "</td>" +
+                            "<td>" + foundation.name + "</td>" +
+                            "<td>" + foundation.cnpj + "</td>" +
+                            "<td>" + foundation.email + "</td>" +
+                            "<td>" + foundation.phoneNumber + "</td>" +
+                            "<td>" + foundation.supportedInstitution + "</td>" +
+
+
+                            '<td>' +
+                            '<a class="edit" onClick="edit_onClick(' + 0 + ')"><i class="material-icons" title="Edit">&#xE254;</i></a>' +
+                            '<a class="delete" onClick="delete_onClick(' + 0 + ')"><i class="material-icons" title="Delete">&#xE872;</i></a>' +
+                            '</td>' +
+
+                            "</tr>"
+
+                        $('#table-content').html(row);
+                    },
+                    error: function (xhr, status, error) {
+                        alert(xhr.responseText);
+                    }
+                });
+            } else {
+                loadTable();
+            }
+        }
+    }
+}, false);
+
+
+
 $('#cancel').on('click', function () {
+    id = -1;
     document.getElementById('list-tab').click();
 })
 
@@ -120,6 +164,8 @@ function resetForm() {
     email.value = "";
     phoneNumber.value = "";
     supportedInstitution.value = "";
+
+    document.getElementById('search-input').value = "";
 }
 
 

@@ -23,6 +23,10 @@ namespace foundation.Repositories
         {
             return await this.context.Foundations.Where(x => x.Id == id).FirstOrDefaultAsync();
         }
+        public async Task<Foundation> getFoundationByCnpj(string cnpj)
+        {
+            return await this.context.Foundations.Where(x => x.Cnpj == cnpj).FirstOrDefaultAsync();
+        }
         public void addFoundation(Foundation foundation)
         {
             this.context.Add(foundation);

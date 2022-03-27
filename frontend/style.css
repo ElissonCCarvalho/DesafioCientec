@@ -3,7 +3,7 @@
     margin-bottom: 20px;
 }
 .form {
-    margin-top: 10px;
+    margin-top: 10px;    
 }
 
 .buttons {
@@ -11,7 +11,7 @@
 }
 
 .title {
-    margin-top: 10px;
+    margin-top: 30px;
 }
 
 .edit {
@@ -20,4 +20,9 @@
 
 .delete {
     color: #F44336;
+}
+
+#search-group {
+    position: relative;
+    margin-top: -60px;        
 }

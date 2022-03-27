@@ -31,7 +31,16 @@ namespace backend.Controllers
             var foundation = await this.repository.getFoundationById(id);
             return foundation != null
             ? Ok(foundation)
-            : NotFound("Foundation Not Found!");
+            : NotFound("Fundação Não Encontrada!");
+        }
+
+        [HttpGet("search/{cnpj}")]
+        public async Task<IActionResult> GetByCnpj(string cnpj)
+        {
+            var foundation = await this.repository.getFoundationByCnpj(cnpj);
+            return foundation != null
+            ? Ok(foundation)
+            : NotFound("Fundação Não Encontrada!");
         }
 
         [HttpPost]
@@ -42,13 +51,13 @@ namespace backend.Controllers
             {
                 if (f.Cnpj == foundation.Cnpj)
                 {
-                    return BadRequest("Cnpj is already registered");
+                    return BadRequest("Cnpj Já Está Cadastrado!");
                 }
             }
 
             this.repository.addFoundation(foundation);
             return await this.repository.saveChangesAsync()
-            ? Ok("Foundation successfully saved")
+            ? Ok("Fundação Salva Com Sucesso!")
             : BadRequest("Internal Error");
         }
 
@@ -56,7 +65,7 @@ namespace backend.Controllers
         public async Task<IActionResult> Put(int id, Foundation foundation)
         {
             var newFoundation = await this.repository.getFoundationById(id);
-            if (newFoundation == null) return NotFound("Foundation Not Found!");
+            if (newFoundation == null) return NotFound("Fundação Não Encontrada!");
 
             newFoundation.Name = foundation.Name ?? newFoundation.Name;
             newFoundation.Cnpj = foundation.Cnpj ?? newFoundation.Cnpj;
@@ -67,7 +76,7 @@ namespace backend.Controllers
             this.repository.updateFoundation(newFoundation);
 
             return await this.repository.saveChangesAsync()
-            ? Ok("Foundation successfully updated")
+            ? Ok("Fundação Editada Com Sucesso!")
             : BadRequest("Internal Error");
         }
 
@@ -80,7 +89,7 @@ namespace backend.Controllers
             this.repository.deleteFoundation(newFoundation);
 
             return await this.repository.saveChangesAsync()
-            ? Ok("Foundation successfully deleted")
+            ? Ok("Fundação Detetada Com Sucesso!")
             : BadRequest("Internal Error");
         }
     }

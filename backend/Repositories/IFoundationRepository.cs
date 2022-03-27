@@ -6,6 +6,7 @@ namespace foundation.Repositories
     {
         Task<IEnumerable<Foundation>> getFoundations();
         Task<Foundation> getFoundationById(int id);
+        Task<Foundation> getFoundationByCnpj(string cnpj);
         void addFoundation(Foundation foundation);
         void updateFoundation(Foundation foundation);
         void deleteFoundation(Foundation foundation);
