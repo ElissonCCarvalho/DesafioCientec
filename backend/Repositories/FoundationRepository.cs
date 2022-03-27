@@ -23,17 +23,17 @@ namespace foundation.Repositories
         {
             return await this.context.Foundations.Where(x => x.Id == id).FirstOrDefaultAsync();
         }
-        public void addFoundation(Foundation Foundation)
+        public void addFoundation(Foundation foundation)
         {
-            this.context.Add(Foundation);
+            this.context.Add(foundation);
         }
-        public void updateFoundation(Foundation Foundation)
+        public void updateFoundation(Foundation foundation)
         {
-            this.context.Update(Foundation);
+            this.context.Update(foundation);
         }
-        public void deleteFoundation(Foundation Foundation)
+        public void deleteFoundation(Foundation foundation)
         {
-            this.context.Remove(Foundation);
+            this.context.Remove(foundation);
         }
 
         public async Task<bool> saveChangesAsync()

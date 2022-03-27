@@ -1,0 +1,23 @@
+.card {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.form {
+    margin-top: 10px;
+}
+
+.buttons {
+    margin-top: 30px;
+}
+
+.title {
+    margin-top: 10px;
+}
+
+.edit {
+    color: #FFC107;
+}
+
+.delete {
+    color: #F44336;
+}
