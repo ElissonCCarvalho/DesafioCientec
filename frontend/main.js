@@ -53,6 +53,9 @@ document.addEventListener('keypress', function (e) {
 $('#cancel').on('click', function () {
     id = -1;
     document.getElementById('list-tab').click();
+
+    const form = document.getElementById('form-tab');
+    form.innerHTML = 'Nova Fundação';
 })
 
 $("#foundation-form").on("submit", function (event) {
@@ -93,10 +96,15 @@ $("#foundation-form").on("submit", function (event) {
                 SupportedInstitution: $("#SupportedInstitution").val()
             }),
             success: function () {
+                const form = document.getElementById('form-tab');
+                form.innerHTML = 'Nova Fundação';
+
                 alert("Fundação editada com sucesso!")
                 document.getElementById('list-tab').click();
                 resetForm();
                 loadTable();
+
+
             },
             error: function (xhr, status, error) {
                 alert(xhr.responseText);
@@ -108,7 +116,9 @@ $("#foundation-form").on("submit", function (event) {
 });
 
 function edit_onClick(index) {
-    document.getElementById('form-tab').click();
+    const form = document.getElementById('form-tab');
+    form.innerHTML = 'Editar Fundação';
+    form.click();
 
     const tbl = $('#table-content tr:has(td)').map(function (i, v) {
         var $td = $('td', this);
